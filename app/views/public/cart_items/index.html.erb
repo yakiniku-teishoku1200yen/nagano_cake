@@ -1,2 +1,63 @@
-<h1>Public::CartItems#index</h1>
-<p>Find me in app/views/public/cart_items/index.html.erb</p>
+<h2 class="mt-3 text-center">ショッピングカート</h2>
+<div class="container">
+  <div class="row">
+    <div class="ml-auto">
+      <%= link_to "カートを空にする", all_destroy_path, method: :delete, class: "btn btn-outline-danger" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <table class="col-md-12 table table-hover table-bordered">
+      <thead>
+        <tr>
+          <th>商品名</th>
+          <th>単価(税込)</th>
+          <th>数量</th>
+          <th>小計</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @cart_items.each do |cart_item| %>
+          <tr>
+            <td>
+              <%= cart_item.item.name %>
+            </td>
+            <td><%= cart_item.item.with_tax_price %></td>
+            <td>
+              <%= form_with model: cart_item, url: cart_item_path(cart_item), method: :patch do |f| %>
+                <%= f.select :amount, *[1..10] %>
+                <%= f.submit "変更", class: "btn btn-outline-success" %>
+              <% end %>
+            </td>
+            <td><%= cart_item.subtotal %></td>
+            <td><%= link_to "削除する", cart_item_path(cart_item), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-outline-danger" %></td>
+          </tr>
+
+          <% @total_money += cart_item.subtotal %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <%= link_to "買い物を続ける", items_path, class: "btn btn-outline-primary" %>
+    </div>
+
+    <div class="col-md-3 offset-md-5 pr-0">
+      <table class="table table-bordered text-left">
+        <thead>
+          <tr>
+            <td>合計金額</td>
+            <td><%= @total_money %></td>
+          </tr>
+        </thead>
+      </table>
+    </div>
+  </div>
+
+  <div class="text-center">
+    <%= link_to "情報入力に進む", new_order_path, class: "btn btn-outline-success mx-auto" %>
+  </div>
+</div>
