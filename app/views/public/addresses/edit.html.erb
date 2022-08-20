@@ -1,2 +1,19 @@
-<h1>Public::Addresses#edit</h1>
-<p>Find me in app/views/public/addresses/edit.html.erb</p>
+
+
+<div class="col-md-8 offset-md-1">
+    <div class="text-success">
+    <%= flash[:notice] %>
+    </div>
+<h1>配送先編集</h1>
+
+  <%= form_with model: @address do |f| %>
+
+    <h4>郵便番号(ハイフンなし)</h4>
+      <%= f.text_field :post_code %>
+    <h4>住所</h4>
+      <%= f.text_field :shipping_address %>
+    <h4>宛名</h4>
+      <%= f.text_field :name %>
+    <%= f.submit '変更内容を保存' %>
+  <% end %>
+</div>
