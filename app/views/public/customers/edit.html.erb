@@ -1,7 +1,7 @@
-<h2>会員情報編集</h2>
+<h2 class="mt-5 mb-3">会員情報編集</h2>
 <div class="container">
   <div class="row">
-    <%= form_with model: @customer do |f| %>
+    <%= form_with model: @customer, url: customer_path(@customer) do |f| %>
       <div class="row">
         <%= f.label :"氏名" %>
         <%= f.text_field :last_name %>
@@ -29,9 +29,9 @@
         <%= f.email_field :email %>
       </div>
 
-      <div class="row">
+      <div class="row mb-5">
         <div>
-          <%= f.submit "編集内容を保存", customer_path(@customer), class: "btn btn-outline-success" %>
+          <%= f.submit "編集内容を保存", class: "btn btn-outline-success" %>
         </div>
         <div>
           <%= link_to "退会する", quit_path, class: "btn btn-outline-danger" %>

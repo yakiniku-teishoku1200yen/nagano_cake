@@ -11,9 +11,8 @@
   </head>
 
   <body>
-    <div>
-    <%= render "layouts/header", genre: @g %>
-    </div>
+    <%= render "layouts/header" %>
     <%= yield %>
+    <%= render "layouts/footer" %>
   </body>
 </html>
