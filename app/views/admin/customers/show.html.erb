@@ -1,2 +1,52 @@
-<h1>Admin::Customers#show</h1>
-<p>Find me in app/views/admin/customers/show.html.erb</p>
+<h2><%= @customer.full_name %>さんの会員詳細</h2>
+  <div>
+    <div>
+      <div class="field">
+        <p>
+          会員ID　　　　　<%= @customer.id %>
+        </p>
+      </div>
+      <div class="field">
+        <p>
+          氏名　　　　　　<%= @customer.full_name %>
+        </p>
+      </div>
+      <div class="field">
+        <p>
+          フリガナ　　　　<%= @customer.full_name_kana %>
+        </p>
+      </div>
+      <div class="field">
+        <p>
+          郵便番号　　　　<%= @customer.post_code %>
+        </p>
+      </div>
+      <div class="field">
+        <p>
+          住所　　　　　　<%= @customer.address %>
+        </p>
+      </div>
+      <div class="field">
+        <p>
+          電話番号　　　　<%= @customer.phone_number %>
+        </p>
+      </div>
+      <div class="field">
+        <p>
+          メールアドレス　<%= @customer.email%>
+        </p>
+      </div>
+      <div class="field">
+        <p>
+          会員ステータス　<% if @customer.is_active == true%>
+                            退会済
+                          <% else %>
+                            有効
+                          <% end %>
+        </p>
+      </div>
+
+      <div class="actions">
+        <%= link_to "編集する",edit_admin_customer_path(@customer), class: "glyphicon glyphicon-pencil btn btn-success edit_shipping_addres_#{@customer.id}" %>
+        <%= link_to " 注文履歴一覧を見る", admin_top_path %>
+      </div>
