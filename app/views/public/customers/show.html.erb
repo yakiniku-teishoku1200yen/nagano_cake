@@ -7,10 +7,8 @@
       </h4>
     </div>
 
-    <div class="col-md-2 offset-md-5">
-      <%= link_to edit_customer_path(@customer) do %>
-        <i class="fas fa-user-cog"></i>
-      <% end %>
+    <div class="col-md-2 offset-md-4">
+      <%= link_to "編集する", edit_customer_path(@customer), class: "btn btn-outline-success" %>
     </div>
   </div>
 
