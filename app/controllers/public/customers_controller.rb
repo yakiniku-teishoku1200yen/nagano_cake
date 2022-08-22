@@ -10,16 +10,17 @@ class Public::CustomersController < ApplicationController
   def update
     @customer = current_customer
     if @customer.update(customer_params)
-      redirect_to show_path
+      redirect_to my_page_customers_path
     else
       render :edit
     end
   end
 
-  def quit
-  end
-
   def out
+    @customer = current_customer
+    @customer.update(is_active: false)
+    sign_out
+    redirect_to root_path
   end
 
   private
