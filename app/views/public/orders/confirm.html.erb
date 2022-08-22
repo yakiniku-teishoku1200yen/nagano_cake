@@ -1,0 +1,43 @@
+<div class="col-md-8 offset-md-1">
+<p><h2 class="mt-3 mb-3"><i class="	far fa-list-alt"></i>注文情報確認</h2></p>
+
+
+
+<%= form_with model: @order do |f| %>
+<%= f.hidden_field :payment_method %>
+
+      <table class="table table-bordered">
+        <thead align="center">
+          <tr class="table-danger">
+          <th>商品名</th>
+          <th>単価(税込)</th>
+          <th>数量</th>
+          <th>小計</th>
+          <th colspan="4"></th>
+          </tr>
+      <% @cart_items.each do |cart_item| %>
+        　<tr>
+      　   <td> <%=cart_item.item.id %></td>
+          <td><%=cart_item.item.price %></td>
+          <td><%=cart_item.amount %></td>
+          <td><%=cart_item.item_id %></td>
+          <td><%= (cart_item.item.price * 1.1).floor * cart_item.amount %></td>
+      <% end %>
+          </tr>
+        </tbody>
+      </table>
+      <div class="row">
+          <strong>支払方法</strong>
+           <%= @order.payment_method_i18n %>
+      </div>
+
+         <div class="row">
+        <strong>お届け先</strong>
+           <%= @order.post_code %>
+           <%= @order.address %>
+           <%= @order.name %>
+      </div>
+
+         <div class="mt-3"><%= f.submit '注文を確定する',class:"btn btn-danger" %> </div>
+
+<% end %>
