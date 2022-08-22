@@ -27,8 +27,7 @@ Rails.application.routes.draw do
    end
   end
 
-   get 'orders/comfirm' => 'orders#comfirm', as: 'comfirm'
-   get 'orders/thanks' => 'orders#thanks', as: 'thanks'
+
   resources :orders, only: [:new, :create, :index, :show]
 
   resources :addresses, only: [:index, :edit, :create, :update, :destroy]
