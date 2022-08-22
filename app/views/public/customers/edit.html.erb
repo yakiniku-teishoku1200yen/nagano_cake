@@ -1,42 +1,44 @@
-<h2>会員情報編集</h2>
+<h2 class="col-md-3 offset-md-1 mt-5 mb-5">会員情報編集</h2>
 <div class="container">
   <div class="row">
-    <%= form_with model: @customer do |f| %>
-      <div class="row">
-        <%= f.label :"氏名" %>
-        <%= f.text_field :last_name %>
+    <div class="col-md-10">
+    <%= form_with model: @customer, url: customer_path(@customer) do |f| %>
+      <div class="row mb-3">
+        <%= f.label :"氏名", class: "col-md-3" %>
+        <%= f.text_field :last_name, class: "mr-3" %>
         <%= f.text_field :first_name %>
       </div>
-      <div class="row">
-        <%= f.label :"フリガナ" %>
-        <%= f.text_field :last_name_kana %>
+      <div class="row mb-3">
+        <%= f.label :"フリガナ", class: "col-md-3" %>
+        <%= f.text_field :last_name_kana, class: "mr-3" %>
         <%= f.text_field :first_name_kana %>
       </div>
-      <div class="row">
-        <%= f.label :"郵便番号" %>
+      <div class="row mb-3">
+        <%= f.label :"郵便番号", class: "col-md-3" %>
         <%= f.text_field :post_code %>
       </div>
-      <div class="row">
-        <%= f.label :"住所" %>
-        <%= f.text_field :address %>
+      <div class="row mb-3">
+        <%= f.label :"住所", class: "col-md-3" %>
+        <%= f.text_field :address, class: "col-md-8" %>
       </div>
-      <div class="row">
-        <%= f.label :"電話番号" %>
+      <div class="row mb-3">
+        <%= f.label :"電話番号", class: "col-md-3" %>
         <%= f.text_field :phone_number %>
       </div>
-      <div class="row">
-        <%= f.label :"メールアドレス" %>
+      <div class="row mb-3">
+        <%= f.label :"メールアドレス", class: "col-md-3" %>
         <%= f.email_field :email %>
       </div>
 
       <div class="row">
-        <div>
-          <%= f.submit "編集内容を保存", customer_path(@customer), class: "btn btn-outline-success" %>
+        <div class="col-md-3 mt-3 mb-5">
+          <%= f.submit "編集内容を保存", class: "btn btn-outline-success" %>
         </div>
-        <div>
-          <%= link_to "退会する", quit_path, class: "btn btn-outline-danger" %>
+        <div class="col-md-5 offset-md-2 mt-3 mb-5">
+          <%= link_to "退会する", quit_customers_path, class: "btn btn-outline-danger" %>
         </div>
       </div>
     <% end %>
+    </div>
   </div>
 </div>
