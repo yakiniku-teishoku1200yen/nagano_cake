@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-11">
+      <div class="col-md-4">
+        <%= image_tag(@item) %>
+      </div>
+
+      <div class="col-md-6">
+        <div class="mb-2">
+          <h2><%= @item.name %></h2>
+        </div>
+        <div class="mb-2">
+          <p><%= @item.explanation %></p>
+        </div>
+        <div class="mb-2">
+          <h3>
+            ¥ <%= price(@item.price) %>
+            <span>(税込)</span>
+          </h3>
+        </div>
+      </div>
+
+      <div></div>
+    </div>
+  </div>
+</div>

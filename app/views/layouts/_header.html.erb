@@ -34,9 +34,10 @@
             <i class="fas fa-sign-out-alt"></i>ログアウト
           <% end %>
         </li>
+      </ul>
 
     <% elsif admin_signed_in? %>
-
+      <ul class="navbar-nav ml-auto">
           <!-- 管理者がログインしている時 -->
         <li>
           <%= link_to admin_products_path, class: "nav-link text-light" do %>
@@ -63,10 +64,11 @@
             <i class="fas fa-sign-out-alt"></i>ログアウト
           <% end %>
         </li>
-
+      </ul>
     <% else %>
 
           <!-- ログインしていない時 -->
+      <ul class="navbar-nav ml-auto">
         <li>
           <%= link_to about_path, class: "nav-link text-light" do %>
             <i class="fas fa-store-alt"></i>About
