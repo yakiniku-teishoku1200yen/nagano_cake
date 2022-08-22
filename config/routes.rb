@@ -13,13 +13,19 @@ Rails.application.routes.draw do
   root to: 'homes#top'
   get '/about' => 'homes#about', as: 'about'
   resources :items, only: [:index, :show]
-  resources :customers, only: [:edit, :update]
-   get 'customers/my_page' => 'customers#show', as: 'show'
-   get 'customers/quit' => 'customers#quit', as: 'quit'
-   patch 'customers/out' => 'customers#out', as: 'out'
+  resources :customers, only: [:edit, :update] do
+   collection do
+    get 'my_page' => 'customers#show'
+    get 'quit'
+    patch 'out'
+   end
+  end
 
-  resources :cart_items, only: [:index, :update, :destroy, :create]
-   delete 'cart_items/all_destroy' => 'cart_items#all_destroy', as: 'all_destroy'
+  resources :cart_items, only: [:index, :update, :destroy, :create] do
+   collection do
+    delete 'all_destroy'
+   end
+  end
 
 
   resources :orders, only: [:new, :create, :index, :show]
