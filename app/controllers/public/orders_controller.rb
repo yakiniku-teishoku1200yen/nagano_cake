@@ -18,7 +18,6 @@ class Public::OrdersController < ApplicationController
 
   def confirm
     @total = 0
-    @cart_items = current_customer.cart_items
     @order = Order.new(order_params)
      if params[:order][:select_address] == 'own_address'
            @order.post_code = current_customer.post_code
@@ -33,14 +32,16 @@ class Public::OrdersController < ApplicationController
      end
     @select_address = params[:order][:select_address]
     @cart_items = CartItem.where(customer_id: current_customer.id)
+    #@cart_items = current_customer.cart_items
   end
 
   def thanks
   end
 
   def create
-    cart_items = current_customer.cart_items.all
+    cart_items = current_customer.cart_items
     @order = current_customer.orders.new(order_params)
+    @order.shipping_cost = 800
     if @order.save
     current_customer.cart_items.all.each do |cart_item| 
       order_item = OrderItem.new

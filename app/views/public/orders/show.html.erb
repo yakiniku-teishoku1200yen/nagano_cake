@@ -2,7 +2,8 @@
   <div class="row">
     <div class="col-12">
 <h2><i class="far fa-edit"></i>注文履歴詳細</h2>
-</div>
+        </div>
+  </div>
 
     <div class="col-8">
       <h5 class="my-2"><strong>注文情報</strong></h5>
@@ -69,7 +70,7 @@
               <td class="align-middle">
                 <%= order_detail.items.name %>
               </td>
-              <td class="align-middle"><%= (order_detail.price*1.1).floor.to_s(:delimited) %></td>
+              <td class="align-middle"><%= (order_detail.with_tax_price).floor.to_s(:delimited) %></td>
               <td class="align-middle"><%= order_detail.order_quantity %></td>
               <td class="align-middle"><%= (order_detail.subtotal).to_s(:delimited) %></td>
             </tr>
@@ -80,3 +81,5 @@
     </div>
   </div>
 </div>
+
+
