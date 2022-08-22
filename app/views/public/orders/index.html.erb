@@ -1,6 +1,50 @@
-<div class="col-md-8 offset-md-1">
-<p><h2 class="mt-3"><i class="far fa-edit"></i>注文履歴一覧</h2></p>
+ <div class="container">
+  <div class="row mt-5">
+    <div class="col-xl-10">
+    <h2><strong><i class="far fa-edit"></i>注文履歴一覧</strong></h2>
+        </div>
+  </div>
 
 
 
-</div>
+ <div class="row">
+    <table class='table table-bordered'>
+      <thead class="table-secondary">
+        <tr>
+          <th>注文日</th>
+          <th>配送先</th>
+          <th>注文商品</th>
+          <th>支払金額</th>
+          <th>ステータス</th>
+          <th>注文詳細</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @orders.each do |order| %>
+          <tr>
+            <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
+            <td><%= "〒" + order.post_code %><br>
+                <%= order.address %>
+                <%= order.name %>
+            </td>
+            <td>
+              <% order.order_items.each do |order_detail| %>
+              <%= order_detail.item.name %>
+              <% end %>
+            </td>
+            <td>
+              <%= (order.total_payment).to_s(:delimited) %>円
+            </td>
+            <td><%= order.crafting_status_i18n %></td>
+            <td><%= link_to '表示する', public_order_path(order), class: "btn btn-primary" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <div class="row">
+      <div class="col-12 d-flex justify-content-center  mt-5 ">
+        <p><%= paginate @orders %></p>
+      </div>
+    </div>
+  </div>
