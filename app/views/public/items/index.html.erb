@@ -1,0 +1,19 @@
+<%#= render 'sidebar', genres: @genres %>
+
+
+	<h2 class="mt-5 text-center">商品一覧</h2>
+  <div class="ml-auto">
+    <h4>(全<%= @total_items.count %>件)</h4>
+  </div>
+
+    <% @items.each do |item| %>
+      <%= link_to item_path(item.id) do %>
+        <%= image_tag item.get_image(350,350) %>
+      <% end %>
+        <%= item.name %>
+      <% if item.is_ordered == true %>
+        <p>¥<%= item.price %></p>
+      <% else %>
+        売り切れ
+      <% end %>
+    <% end %>

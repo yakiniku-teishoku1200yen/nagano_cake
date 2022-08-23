@@ -16,5 +16,20 @@
           <%= f.label :"パスワード", class: "col-md-2 offset-md-1" %>
           <%= f.password_field :password, class: "col-md-5" %>
         </div>
+        <div class="mt-5">
+          <%= f.submit "ログイン", class: "btn btn-outline-primary" %>
+        </div>
+      <% end %>
+        <div class="mt-4 mb-4">
+          <h4>会員登録がお済みでない方</h4>
+        </div>
+
+        <div class="mb-4">
+          <%= link_to "こちら", new_registration_path(resource_name) %>から新規登録を行ってください。
+        </div>
+    </div>
+  </div>
+</div>
+
 
 
