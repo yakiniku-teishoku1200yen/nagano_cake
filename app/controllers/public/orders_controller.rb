@@ -12,12 +12,13 @@ class Public::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @order_details = OrderDetail.where(order_id: @order.id)
-    @total = @order.total_payment - @order.shipping_cost
+    @order_items = OrderItem.where(order_id: @order.id)
+    #@total = @order.total_payment - @order.shipping_cost
+    @total_money = 0
   end
 
   def confirm
-    @total = 0
+    @total_money = 0
     @order = Order.new(order_params)
      if params[:order][:select_address] == 'own_address'
            @order.post_code = current_customer.post_code
@@ -30,6 +31,7 @@ class Public::OrdersController < ApplicationController
            @order.name = @address.name
      else #バリデーションチェック
      end
+    @order.shipping_cost = 800
     @select_address = params[:order][:select_address]
     @cart_items = CartItem.where(customer_id: current_customer.id)
     #@cart_items = current_customer.cart_items
@@ -41,14 +43,14 @@ class Public::OrdersController < ApplicationController
   def create
     cart_items = current_customer.cart_items
     @order = current_customer.orders.new(order_params)
-    @order.shipping_cost = 800
     if @order.save
-    current_customer.cart_items.all.each do |cart_item| 
+    current_customer.cart_items.all.each do |cart_item|
       order_item = OrderItem.new
       order_item.item_id = cart_item.item_id
       order_item.order_id = @order.id
       order_item.order_quantity = cart_item.amount
       order_item.price = cart_item.amount
+      order_item.save
     end
     redirect_to thanks_path
     cart_items.destroy_all
@@ -60,6 +62,6 @@ class Public::OrdersController < ApplicationController
 
 
   def order_params
-    params.require( :order).permit( :payment_method, :post_code, :address, :name ,:total_payment)
+    params.require( :order).permit( :payment_method, :post_code, :address, :name ,:total_payment ,:shipping_cost)
   end
 end
