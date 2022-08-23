@@ -1,4 +1,6 @@
 class Public::ItemsController < ApplicationController
+  before_action :authenticate_customer!
+
   def index
     @genres = Genre.all
     @total_items = Item.all
