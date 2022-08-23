@@ -2,8 +2,8 @@
   <div class="row mt-4">
     <div class="col-xl-10">
      <h2 class="mb-5"><strong><i class="	far fa-list-alt"></i>注文情報確認</strong></h2>
-    </div>
-     <div class="col-8">
+    
+     <div class="col-10">
       <table class="table table-bordered mb-5">
         <thead align="center">
           <tr class="table-danger">
@@ -15,11 +15,12 @@
           </tr>
       <% @cart_items.each do |cart_item| %>
         　<tr>
-      　   <td> <%=cart_item.item.id %></td>
+      　  <td> <%=cart_item.item.name %></td>
           <td><%=cart_item.item.price %></td>
           <td><%=cart_item.amount %></td>
-          <td><%=cart_item.item_id %></td>
+          <!--%=cart_item.item_id %-->
           <td><%= (cart_item.item.with_tax_price).floor * cart_item.amount %></td>
+          <% @total_money += cart_item.subtotal %>
       <% end %>
           </tr>
         </tbody>
@@ -32,11 +33,11 @@
           </tr>
           <tr>
             <th class="table-secondary">商品合計</th>
-            <td><%= @total.to_s(:delimited) %></td>
+            <td><%= @total_money.to_s(:delimited) %></td>
           </tr>
           <tr>
             <th class="table-secondary">請求金額</th>
-            <td><%= (@total + @order.shipping_cost).to_s(:delimited) %></td>
+            <td><%= (@total_money + @order.shipping_cost).to_s(:delimited) %></td>
           </tr>
         </table>
       </div>
@@ -60,15 +61,16 @@
 
     <div class="text-center mb-5">
       <%= form_with model: @order, url: orders_path, local: true, method: :post do |f| %>
-        <%= f.hidden_field :post_code, :value => @order.post_code %>
-        <%= f.hidden_field :payment_method, :value => @order.payment_method  %>
-        <%= f.hidden_field :address, :value => @order.address%>
-        <%= f.hidden_field :name, :value => @order.name%>
-        
-        <%= f.hidden_field :total_payment, :value => @total + @order.shipping_cost  %>
+        <%= f.hidden_field :post_code %>
+        <%= f.hidden_field :payment_method %>
+        <%= f.hidden_field :address %>
+        <%= f.hidden_field :name %>
+        <%= f.hidden_field :shipping_cost %>
+        <%= f.hidden_field :total_payment, :value => @total_money + @order.shipping_cost  %>
      
       <%= f.submit "注文を確定", class: "btn btn-success btn-lg" %>
       <% end %>
     </div>
    </div>
+</div>
 </div>

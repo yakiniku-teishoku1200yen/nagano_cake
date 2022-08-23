@@ -15,7 +15,7 @@
 
      <h4 class="my-3 ml-3"><strong>お届け先</strong></h4>
      <div class="col-5 ml-2 mt-2">
-      <%= f.radio_button :select_address, "own_address" %>
+      <%= f.radio_button :select_address, "own_address" ,checked: true %>
       <%= f.label :select_address, "自身の住所" %><br>
       <span class="ml-5"><%= @customer.post_code %></span><br>
       <span class="ml-5"><%= @customer.address %></span><br>
