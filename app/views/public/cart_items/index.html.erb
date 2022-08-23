@@ -12,7 +12,7 @@
   <div class="row">
     <table class="col-md-12 table table-hover table-bordered">
       <thead>
-        <tr>
+        <tr class="table-warning">
           <th>商品名</th>
           <th>単価(税込)</th>
           <th>数量</th>
@@ -29,7 +29,7 @@
             <td><%= cart_item.item.with_tax_price %></td>
             <td>
               <%= form_with model: cart_item, url: cart_item_path(cart_item), method: :patch do |f| %>
-                <%= f.select :amount, *[1..10] %>
+                <%= f.select :amount, *[1..10], include_blank: "個数選択" %>
                 <%= f.submit "変更", class: "btn btn-outline-success" %>
               <% end %>
             </td>
@@ -52,7 +52,7 @@
       <table class="table table-bordered text-left">
         <thead>
           <tr>
-            <td>合計金額</td>
+            <td class="table-warning">合計金額</td>
             <td><%= @total_money %></td>
           </tr>
         </thead>

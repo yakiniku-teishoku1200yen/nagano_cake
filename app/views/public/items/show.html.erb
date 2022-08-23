@@ -20,7 +20,7 @@
         </div>
       </div>
 
-      <div>
+      <div class="mt-3 mb-5">
         <% if @item.is_ordered == true %>
           <%= form_with model: @cart_item, url: cart_items_path, method: :post do |f| %>
             <%= f.hidden_field :item_id, value: @item.id %>
