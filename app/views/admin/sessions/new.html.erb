@@ -1,13 +1,20 @@
-<div>
-  <div>
-    <h2>管理者ログイン</h2>
+<div class="container">
+    <h4 class="m-4"><span style="background-color:#dddddd">管理者ログイン</span></h4>
 
-<%= form_with url: session_path(resource_name) do |f| %>
-  <%= render "session"%>
+<%= form_with model: @admin, url: admin_session_path do |f| %>
+  <div>
+    <%= f.label :email, "メールアドレス" %>
+    <%= f.email_field :email, autocomplete: "email" %>
+  </div>
+
+  <div class="field form-group col-xs-9">
+    <%= f.label :password, "パスワード" %>
+   <%= f.password_field :password, autocomplete: "current-password" %>
+  </div>
 
   <div class=>
     <%= f.submit "ログイン" %>
   </div>
 <% end %>
   </div>
-</div>
+
