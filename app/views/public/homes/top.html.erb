@@ -13,11 +13,23 @@
         </div>
       </div>
 
-      <div class="col-md-7 mx-auto mt-4" style="background-color: #cc9999;">
+      <div class="col-md-7 mx-auto mt-4 mb-4" style="background-color: #cc9999;">
         <h2 class="text-center text-white">新着商品</h2>
       </div>
 
-      <div class="row"></div>
+      <div class="row">
+        <% @items.first(4).each do |item| %>
+          <%= link_to item_path(item.id) do %>
+            <%= image_tag item.get_image(200, 200) %>
+          <% end %>
+            <%= item.name %>
+          <% if item.is_ordered == true %>
+            ¥ <%= item.price %>
+          <% else %>
+            <h5>売り切れ</h5>
+          <% end %>
+        <% end %>
+      </div>
 
       <div class="row mt-2 mb-3">
         <div class="col-md-3 offset-md-9 pr-0">
