@@ -6,14 +6,13 @@
         <i class="fas fa-birthday-cake"></i>
         商品一覧(全<%= @total_items.count %>件)
       </h2>
-
       <% @items.each do |item| %>
         <%= link_to item_path(item.id) do %>
           <%= image_tag item.get_image(150, 150) %>
         <% end %>
           <%= item.name %>
         <% if item.is_ordered == true %>
-          <p>¥ <%= item.price %></p>
+          <p>¥ <%= item.add_tax_sales_price %></p>
         <% else %>
           <h4>売り切れ</h4>
         <% end %>
