@@ -1,7 +1,7 @@
 class Public::AddressesController < ApplicationController
-  before_action :authenticate_user!, except: [:top]
-  
-  
+  before_action :authenticate_customer!, except: [:top]
+
+
   def new
    @address = Address.new
   end
