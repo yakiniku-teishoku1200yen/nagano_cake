@@ -42,7 +42,13 @@
       <table class="table table-bordered">
         <tr>
           <th class="table-warning">商品合計</th>
-          <td><%= @total_money.to_s(:delimited) %></td>
+          <!--%= @order_items.sum( &:subtotal) %-->
+          <td><% @order_items.each do |order_detail| %>
+           <%  @total_money += order_detail.subtotal2 %>
+           <% end %>
+          <%=  @total_money %>
+         </td>
+         
         </tr>
         <tr>
           <th class="table-warning">配送料</th>
@@ -69,7 +75,7 @@
       　   <td> <%= order_detail.item.name %></td>
           <td><%= (order_detail.with_tax_price).floor.to_s(:delimited) %></td>
           <td><%= order_detail.order_quantity %></td>
-          <td><%= (order_detail.subtotal).to_s(:delimited) %></td>
+          <td><%= (order_detail.subtotal2).to_s(:delimited) %></td>
       <% end %>
           </tr>
         </tbody>

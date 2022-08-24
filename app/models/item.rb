@@ -5,6 +5,10 @@ class Item < ApplicationRecord
 
   has_one_attached :image
 
+  validates :genre_id, :name, :price, presence: true
+  validates :explanation, length: { maximum: 150 }
+  validates :is_ordered, inclusion: { in: [true, false] }
+
   def with_tax_price
     (price * 1.1).floor
   end
@@ -16,9 +20,6 @@ class Item < ApplicationRecord
     end
     image.variant(resize_to_limit: [width,height]).processed
   end
-
-  belongs_to :genre
-  validates :is_ordered, inclusion: { in: [true, false] }
 
   def add_tax_sales_price
   (self.price * 1.10).round
