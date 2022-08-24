@@ -28,4 +28,6 @@ class Item < ApplicationRecord
   def taxin_price
     price*1.1
   end
+  
+
 end
