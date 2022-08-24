@@ -13,6 +13,7 @@ class Public::ItemsController < ApplicationController
   end
 
   private
+
   def items_params
     parmas.require(:item).permit(:genre_id, :name, :explanation, :price, :is_ordered, :image)
   end
