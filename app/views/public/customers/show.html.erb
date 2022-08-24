@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <h2 class="mt-5 text-center mb-5">
+    <h2 class="text-center mt-4 mb-5">
       <i class="fas fa-home"></i>
       マイページ
     </h2>
@@ -22,27 +22,27 @@
     <table class="col-md-8 table table-bordered table-condensed">
       <tbody>
         <tr>
-          <td>氏名</td>
+          <td class="table-warning col-md-3">氏名</td>
           <td class="text-left"><%= @customer.full_name %></td>
         </tr>
         <tr>
-          <td>カナ</td>
+          <td class="table-warning">カナ</td>
           <td class="text-left"><%= @customer.full_name_kana %></td>
         </tr>
         <tr>
-          <td>郵便番号</td>
+          <td class="table-warning">郵便番号</td>
           <td class="text-left"><%= @customer.post_code %></td>
         </tr>
         <tr>
-          <td>住所</td>
+          <td class="table-warning">住所</td>
           <td class="text-left"><%= @customer.address %></td>
         </tr>
         <tr>
-          <td>電話番号</td>
+          <td class="table-warning">電話番号</td>
           <td class="text-left"><%= @customer.phone_number %></td>
         </tr>
         <tr>
-          <td>メールアドレス</td>
+          <td class="table-warning">メールアドレス</td>
           <td class="text-left"><%= @customer.email %></td>
         </tr>
       </tbody>
