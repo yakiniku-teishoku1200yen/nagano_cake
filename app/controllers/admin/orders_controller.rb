@@ -1,6 +1,6 @@
 class Admin::OrdersController < ApplicationController
   def index
-    @orders = Order.all
+    @orders = Order.page(params[:page])
   end
 
   def show
@@ -11,7 +11,7 @@ class Admin::OrdersController < ApplicationController
 
   def update
     @order = Order.find(params[:id])
-    @order_items = @order.order_items   
+    @order_items = @order.order_items
     if @order.update(order_params)
       if  params[:order][:status] == "payment_confirmation"#
         @order_items.each do |order_item|
