@@ -1,4 +1,5 @@
 class Public::OrdersController < ApplicationController
+  before_action :authenticate_user!, except: [:top]
 
   def new
     @order = Order.new
@@ -49,7 +50,7 @@ class Public::OrdersController < ApplicationController
       order_item.item_id = cart_item.item_id
       order_item.order_id = @order.id
       order_item.order_quantity = cart_item.amount
-      order_item.price = cart_item.amount
+      order_item.price = cart_item.item.price
       order_item.save
     end
     redirect_to thanks_path
