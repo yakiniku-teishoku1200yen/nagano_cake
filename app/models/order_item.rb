@@ -7,13 +7,13 @@ enum crafting_status: { production_not_allowed: 0, waiting_for_production: 1, pr
  def with_tax_price
     (price * 1.1).floor
  end
- 
+
  def subtotal
     item.price * order_quantity
  end
- 
+
  def subtotal2
     item.price * order_quantity
  end
- 
+
 end
