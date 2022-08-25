@@ -28,3 +28,4 @@
   - 一般ユーザー一覧表示
   - 一般ユーザーの削除
 
+https://github.com/yakiniku-teishoku1200yen/nagano_cake/issues/29#issue-1350320539
