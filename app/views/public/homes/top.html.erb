@@ -1,2 +1,44 @@
-<h1>Public::Homes#top</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <img src="assets/top_cake.jpg", style="width: 100%; height: 600px;", class="img-thumbnail">
+        <div class="d-flex justify-content-center align-items-center card-img-overlay">
+          <h4 class="text-center px-5 py-5" style="background-color: rgba(255, 255, 255, 0.6); font-family: cursive;">
+            ようこそ、ながのCAKEへ！<br>
+            このサイトは、ケーキ販売のECサイトになります。<br>
+            会員でない方も商品の閲覧はできますが、<br>
+            購入には会員登録が必要になります。<br>
+          </h4>
+        </div>
+      </div>
+
+      <div class="col-md-7 mx-auto mt-4 mb-4" style="background-color: #cc9999;">
+        <h2 class="text-center text-white">新着商品</h2>
+      </div>
+
+      <div class="row">
+        <% @items.first(4).each do |item| %>
+        <div class="mx-auto">
+          <%= link_to item_path(item.id) do %>
+            <%= image_tag item.get_image(250, 250) %>
+          <% end %>
+            <p><%= item.name %></p>
+          <% if item.is_ordered == true %>
+            <p>¥ <%= item.price %></p>
+          <% else %>
+            <h5>売り切れ</h5>
+          <% end %>
+        </div>
+        <% end %>
+      </div>
+
+      <div class="row mt-2 mb-3">
+        <div class="col-md-3 offset-md-9 pr-0">
+          <%= link_to "全ての商品を見る>", items_path %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

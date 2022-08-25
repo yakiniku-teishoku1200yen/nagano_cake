@@ -13,18 +13,23 @@ Rails.application.routes.draw do
   root to: 'homes#top'
   get '/about' => 'homes#about', as: 'about'
   resources :items, only: [:index, :show]
-  resources :customers, only: [:edit, :update]
-   get 'customers/my_page' => 'customers#show', as: 'show'
-   get 'customers/quit' => 'customers#quit', as: 'quit'
-   patch 'customers/out' => 'customers#out', as: 'out'
+  resources :customers, only: [:edit, :update] do
+   collection do
+    get 'my_page' => 'customers#show'
+    get 'quit'
+    patch 'out'
+   end
+  end
 
-  resources :cart_items, only: [:index, :update, :destroy, :create]
-   delete 'cart_items/all_destroy' => 'cart_items#all_destroy', as: 'all_destroy'
+  resources :cart_items, only: [:index, :update, :destroy, :create] do
+   collection do
+    delete 'all_destroy'
+   end
+  end
 
-  resources :orders, only: [:new, :create, :index, :show]
-   get 'orders/comfirm' => 'orders#comfirm', as: 'comfirm'
+   get 'orders/confirm' => 'orders#confirm', as: 'confirm'
    get 'orders/thanks' => 'orders#thanks', as: 'thanks'
-
+  resources :orders, only: [:new, :create, :index, :show]
   resources :addresses, only: [:index, :edit, :create, :update, :destroy]
  end
 
@@ -33,7 +38,7 @@ Rails.application.routes.draw do
   resources :items, only: [:index, :new, :create, :show, :edit, :update]
   resources :genres, only: [:index, :create, :edit, :update]
   resources :customers, only: [:index, :show, :edit, :update]
-  resources :orders, only: [:show, :update]
+  resources :orders, only: [:index, :show, :update]
   resources :order_items, only: [:update]
  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

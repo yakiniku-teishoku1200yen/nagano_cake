@@ -1,2 +1,57 @@
-<h1>Admin::Items#new</h1>
-<p>Find me in app/views/admin/items/new.html.erb</p>
+<div class="container">
+  <h4 class="m-4"><span style="background-color:#dddddd">商品新規登録</span></h4>
+</div>
+<div class="container pt-3 ">
+  <div class="row">
+    <div class=" col-6 offset-md-3">
+      <%= form_with model: @item, url:  admin_items_path do |f| %>
+        <form>
+          <div class="form-group row">
+            <%= f.label :商品画像 ,class: "col-sm-3 col-form-label " %>
+            <%= f.file_field :image, accept: "image/" ,class:"col-sm-8 pl-4" %>
+          </div>
+          <div class="form-group row">
+            <%= f.label :商品名,class: "col-sm-3 col-form-label " %>
+            <div class="col-sm-9 pl-4">
+              <%= f.text_field :name, autofocus: true, class:"form-control ",  id:"inputName", placeholder:"商品名"%>
+            </div>
+          </div>
+          <div class="form-group row">
+            <%= f.label :商品説明,class: "col-sm-3 col-form-label " %>
+            <div class="col-sm-9 pl-4">
+              <%= f.text_area :explanation, autofocus: true, class:"form-control", rows: 5, id:"inputName", placeholder:"ここに説明文を記述します"%>
+            </div>
+          </div>
+          <div class="form-group row">
+            <%= f.label :ジャンル,class: "col-sm-3 col-form-label" %>
+            <div class="col-sm-9 pl-4">
+              <%= f.collection_select :genre_id, Genre.all, :id, :name, prompt: "-- 選択してください --", class: 'form-control'%>
+            </div>
+          </div>
+          <div class="form-group row">
+            <%= f.label :税抜価格,class: "col-sm-3 col-form-label " %>
+            <div class="col-sm-9 pl-4 ">
+              <div class="form-check-inline">
+              <%= f.text_field :price, autofocus: true, class:"form-control ", id:"inputName", placeholder:"1000"%> <label class="form-check-label" for="inlineRadio3">円</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row ">
+            <%= f.label :販売ステータス,class: "col-sm-3 col-form-label " %>
+            <div class="col-sm-9 pl-4">
+              <div class="form-check form-check-inline">
+                <%= f.radio_button :is_ordered, true, checked: true %>販売中
+             </div>
+             <div class="form-check form-check-inline">
+               <%= f.radio_button :is_ordered, false %>販売停止中
+             </div>
+            </div>
+          </div>
+          <div class="text-center ">
+            <%= f.submit " 新規登録 " ,class: "btn btn-success " %>
+          </div>
+        </form>
+      <% end %>
+    </div>
+  </div>
+</div>
