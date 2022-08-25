@@ -1,24 +1,30 @@
 # 概要
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+長野県にある小さな洋菓子店「ながのCAKE」の商品の通販するためのECサイト開発。
 
-Things you may want to cover:
+# ながのCAKEの説明
 
-* Ruby version
+受注生産型の通販サイト。1配送に伴う送料は全国一律800円で友人や家族へのプレゼントなどの
+注文者以外にもご利用で商品を発送できます。
+支払方法はクレジットカード、銀行振込から選択できます。
 
-* System dependencies
+# 主な機能
 
-* Configuration
+一般ユーザー
+会員登録
+ログイン
+退会機能
+アカウント情報編集
+商品の購入
+注文履歴の確認
+配送先の複数登録
+管理ユーザー
+管理者ログイン
+商品登録
+ジャンル登録
+受注履歴の確認
+ステータスの更新
+（注文ステータス,製作ステータス,販売ステータス,会員ステータス）
+一般ユーザー一覧表示
+一般ユーザーの削除
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
